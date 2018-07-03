@@ -9,17 +9,27 @@ class Home extends Component {
     constructor(props) {
         super(props);
 
-        this.handleClick = this.handleClick.bind(this);
+        this.applyForJob = this.applyForJob.bind(this);
+        this.saveJob = this.saveJob.bind(this);
+        this.unSaveJob = this.unSaveJob.bind(this);
 
         //this.state = {firstName: '', lastName: '', emailAddress: '', type: '', contactNumber : '', password : '', confirmPassword: ''};
-        this.allJobs = [{"jobTitle":"Software Engineer", "experience":"12-15yrs", "location":"banglore","keySkills":"java,angular js","savedJob":'false'},
-        {"jobTitle":"Software Engineer2", "experience":"12-25yrs", "location":"banglore2","keySkills":"java,angular js2","savedJob":'false'},
-        {"jobTitle":"Software Engineer3", "experience":"12-35yrs", "location":"banglore3","keySkills":"java,angular js1","savedJob":'true'}];
+        this.allJobs = [{"jobId":"1", "jobTitle":"Software Engineer", "experience":"12-15yrs", "location":"banglore","keySkills":"java,angular js","savedJob":'false'},
+        {"jobId":"2", "jobTitle":"Software Engineer2", "experience":"12-25yrs", "location":"banglore2","keySkills":"java,angular js2","savedJob":'false'},
+        {"jobId":"33", "jobTitle":"Software Engineer3", "experience":"12-35yrs", "location":"banglore3","keySkills":"java,angular js1","savedJob":'true'}];
       }
 
-      handleClick(event) {
-        alert('Job applied successfully');
+      applyForJob(jobId, event) {
+        alert('Job applied successfully:::'+jobId);
         //event.preventDefault();
+      }
+
+      saveJob(jobId, event) {
+        alert('Saved job successfully:::'+jobId);
+      }
+
+      unSaveJob(jobId, event) {
+        alert('Un Saved job successfully:::'+jobId);
       }
       
    render() {
@@ -36,10 +46,10 @@ class Home extends Component {
                         {job.experience} <img src={ location } className={"image"} /> {job.location}
                     </div>
                     <div className={"keySkillsDiv"}>Key Skills : {job.keySkills}     
-                        <img src={ blackStar } className={job.savedJob === 'true'? 'hidden' : 'image'}/>
-                        <img src={ redStar } className={job.savedJob === 'true'? 'image' : 'hidden'}/>
+                        <img src={ blackStar } className={job.savedJob === 'true'? 'hidden' : 'image'} onClick={(e) => this.saveJob(job.jobId, e)}/>
+                        <img src={ redStar } className={job.savedJob === 'true'? 'image' : 'hidden'} onClick={(e) => this.unSaveJob(job.jobId, e)}/>
                     </div>
-                    <div><button onClick={this.handleClick}>Apply</button></div>
+                    <div><button onClick={(e) => this.applyForJob(job.jobId, e)}>Apply</button></div>
                 </div>
             </div>
             );

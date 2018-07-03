@@ -8,10 +8,18 @@ import redStar from './icons/star-red.png';
 class SavedJobs extends Component {
     constructor(props) {
         super(props);
+
+        this.applyForJob = this.applyForJob.bind(this);
+
         //this.state = {firstName: '', lastName: '', emailAddress: '', type: '', contactNumber : '', password : '', confirmPassword: ''};
-        this.savedJobs = [{"jobTitle":"Software Engineer", "experience":"12-15yrs", "location":"banglore","keySkills":"java,angular js","savedJob":'true'},
-        {"jobTitle":"Software Engineer2", "experience":"12-25yrs", "location":"banglore2","keySkills":"java,angular js2","savedJob":'true'},
-        {"jobTitle":"Software Engineer3", "experience":"12-35yrs", "location":"banglore3","keySkills":"java,angular js1","savedJob":'true'}];
+        this.savedJobs = [{"jobId":"1", "jobTitle":"Software Engineer", "experience":"12-15yrs", "location":"banglore","keySkills":"java,angular js","savedJob":'false'},
+        {"jobId":"2", "jobTitle":"Software Engineer2", "experience":"12-25yrs", "location":"banglore2","keySkills":"java,angular js2","savedJob":'false'},
+        {"jobId":"33", "jobTitle":"Software Engineer3", "experience":"12-35yrs", "location":"banglore3","keySkills":"java,angular js1","savedJob":'true'}];
+      }
+
+      applyForJob(jobId, event) {
+        alert('Job applied successfully:::'+jobId);
+        //event.preventDefault();
       }
       
    render() {
@@ -27,6 +35,7 @@ class SavedJobs extends Component {
                         <img src={ experience } className={"image"} />
                         {job.experience} <img src={ location } className={"image"} /> {job.location}
                     </div>
+                    <div><button onClick={(e) => this.applyForJob(job.jobId, e)}>Apply</button></div>
                 </div>
             </div>
             );
